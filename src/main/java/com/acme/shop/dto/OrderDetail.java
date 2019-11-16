@@ -1,14 +1,11 @@
-package com.acme.shop.model;
+package com.acme.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
-public class OrderDetail {
-
-    @JsonProperty(value = "order")
-    private Order order;
+class OrderDetail {
 
     @JsonProperty(value = "product")
     private Product product;
@@ -21,10 +18,17 @@ public class OrderDetail {
     @JsonProperty(value = "product_price")
     private BigDecimal productPrice;
 
-    public OrderDetail(Order order, Product product, Long productQuantity, BigDecimal productPrice) {
-        this.order = order;
+    OrderDetail(Product product, Long productQuantity, BigDecimal productPrice) {
         this.product = product;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
+    }
+
+    Long getProductQuantity() {
+        return productQuantity;
+    }
+
+    BigDecimal getProductPrice() {
+        return productPrice;
     }
 }

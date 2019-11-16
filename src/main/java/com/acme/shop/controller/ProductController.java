@@ -1,7 +1,7 @@
 package com.acme.shop.controller;
 
-import com.acme.shop.model.ApiError;
-import com.acme.shop.model.Product;
+import com.acme.shop.dto.ApiError;
+import com.acme.shop.dto.Product;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

@@ -1,8 +1,8 @@
 package com.acme.shop.config;
 
+import com.acme.shop.dto.ApiError;
 import com.acme.shop.exception.RequestHandlingException;
 import com.acme.shop.exception.ResourceNotFoundException;
-import com.acme.shop.model.ApiError;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

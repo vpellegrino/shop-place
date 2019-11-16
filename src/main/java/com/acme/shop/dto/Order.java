@@ -1,4 +1,4 @@
-package com.acme.shop.model;
+package com.acme.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -43,4 +43,5 @@ public class Order {
                 )
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
 }

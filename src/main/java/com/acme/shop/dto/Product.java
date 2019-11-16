@@ -1,4 +1,4 @@
-package com.acme.shop.model;
+package com.acme.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
@@ -21,7 +21,7 @@ public class Product {
     @JsonProperty(value = "unit_price")
     private BigDecimal unitPrice;
 
-    public Product(BigDecimal productId, String productName, BigDecimal unitPrice) {
+    Product(BigDecimal productId, String productName, BigDecimal unitPrice) {
         this.productId = productId;
         this.productName = productName;
         this.unitPrice = unitPrice;

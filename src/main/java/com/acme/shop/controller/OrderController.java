@@ -1,7 +1,7 @@
 package com.acme.shop.controller;
 
-import com.acme.shop.model.ApiError;
-import com.acme.shop.model.Order;
+import com.acme.shop.dto.ApiError;
+import com.acme.shop.dto.Order;
 import io.swagger.annotations.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;

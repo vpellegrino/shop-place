@@ -33,13 +33,13 @@ public class ProductController {
     @GetMapping(path = "products", produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Retrieves the list of all products", nickname = "getProductList", response = Product.class, responseContainer = "List")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "The identifier of the created product", response = Product.class, responseContainer = "List"),
+            @ApiResponse(code = 200, message = "The list of all product", response = Product.class, responseContainer = "List"),
             @ApiResponse(code = 500, message = "An unexpected error occurred", response = ApiError.class)})
     public List<Product> getProductList() {
         return null;
     }
 
-    @PutMapping(path = "products/{productId}")
+    @PutMapping(path = "products/{productId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Fully updates the specified product", nickname = "updateProduct")
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "The specific product has been correctly updated"),

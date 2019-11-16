@@ -26,10 +26,21 @@ public class Order {
     @JsonProperty(value = "involved_products")
     private List<OrderDetail> involvedProductList;
 
-    public Order(BigDecimal orderId, String buyerEmail, List<OrderDetail> involvedProductList) {
+    Order(BigDecimal orderId, String buyerEmail, List<OrderDetail> involvedProductList) {
         this.orderId = orderId;
         this.buyerEmail = buyerEmail;
         this.orderDate = new Date();
         this.involvedProductList = involvedProductList;
+    }
+
+    @ApiModelProperty(notes = "Total value of the order", example = "8")
+    @JsonProperty(value = "total_value")
+    public BigDecimal getTotalValue() {
+        return involvedProductList.stream()
+                .map(
+                        orderDetail -> orderDetail.getProductPrice()
+                                .multiply(BigDecimal.valueOf(orderDetail.getProductQuantity()))
+                )
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

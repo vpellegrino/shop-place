@@ -1,4 +1,4 @@
-CREATE TABLE public.product
+CREATE TABLE public.products
 (
     product_id serial NOT NULL,
     product_name text NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE public.product
     CONSTRAINT product_pkey PRIMARY KEY (product_id)
 );
 
-CREATE TABLE public.order
+CREATE TABLE public.orders
 (
     order_id serial NOT NULL,
     buyer_email text NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE public.order
     CONSTRAINT order_pkey PRIMARY KEY (order_id)
 );
 
-CREATE TABLE public.order_detail
+CREATE TABLE public.order_details
 (
     order_id integer NOT NULL,
     product_id integer NOT NULL,
@@ -22,16 +22,16 @@ CREATE TABLE public.order_detail
     unit_price numeric NOT NULL
 );
 
-ALTER TABLE public.order_detail
+ALTER TABLE public.order_details
 ADD CONSTRAINT pk_order_detail
 PRIMARY KEY(order_id, product_id);
 
-ALTER TABLE public.order_detail
+ALTER TABLE public.order_details
 ADD CONSTRAINT fk_detail_order
 FOREIGN KEY (order_id) REFERENCES
-public.order (order_id);
+public.orders (order_id);
 
-ALTER TABLE public.order_detail
+ALTER TABLE public.order_details
 ADD CONSTRAINT fk_detail_product
 FOREIGN KEY (product_id) REFERENCES
-public.product (product_id);
+public.products (product_id);

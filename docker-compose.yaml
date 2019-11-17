@@ -1,0 +1,22 @@
+version: '2'
+services:
+  shop-place-app:
+    image: shop-place-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mypostgres
+  mypostgres:
+    image: postgres
+    volumes:
+      - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - db-data:/var/lib/postgresql/data/
+    ports:
+      - "5444:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=mydb
+
+volumes:
+  db-data:

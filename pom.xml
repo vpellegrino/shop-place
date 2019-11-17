@@ -11,9 +11,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <start-class>com.acme.shop.ShopPlaceApp</start-class>
+        <downloadJavadocs>true</downloadJavadocs>
+        <downloadSources>true</downloadSources>
         <java.version>1.8</java.version>
         <swagger.version>2.9.2</swagger.version>
-        <start-class>com.acme.shop.ShopPlaceApp</start-class>
+        <postgres.version>42.2.8</postgres.version>
         <junit.version>4.12</junit.version>
     </properties>
 
@@ -27,6 +30,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
         </dependency>
 
         <dependency>

@@ -1,7 +1,6 @@
 package com.acme.shop.config;
 
 import com.acme.shop.dto.ApiError;
-import com.acme.shop.exception.RequestHandlingException;
 import com.acme.shop.exception.ResourceNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.slf4j.Logger;
@@ -85,14 +84,6 @@ public class GlobalExceptionHandler {
         logger.info(message);
 
         return error(HttpStatus.NOT_FOUND, message, false);
-    }
-
-    @ExceptionHandler(RequestHandlingException.class)
-    public ResponseEntity<ApiError> requestHandlingException(HttpServletRequest req, RequestHandlingException e) {
-        final String message = "Error handling request." + getMessageFromRequest(req);
-        logger.error(message, e);
-
-        return error(HttpStatus.INTERNAL_SERVER_ERROR, message, true);
     }
 
     @ExceptionHandler(Exception.class)

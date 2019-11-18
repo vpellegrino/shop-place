@@ -46,10 +46,10 @@ public class OrderController {
             @ApiResponse(code = 400, message = "End date must not be before the start date", response = ApiError.class),
             @ApiResponse(code = 500, message = "An unexpected error occurred", response = ApiError.class)})
     public List<OrderDTO> getOrderListBetweenDates(
-            @ApiParam(value = "Inclusive start date", required = true, example = "2012-07-10 14:58:00")
+            @ApiParam(value = "Inclusive start date (format: yyyy-MM-dd HH:mm:ss)", required = true, example = "2012-07-10 14:58:00")
             @RequestParam(value = "start") @DateTimeFormat(pattern = ACCEPTED_DATETIME_FORMAT) Date startDate,
 
-            @ApiParam(value = "Inclusive end date, if not specified current time will be considered", example = "2014-07-10 00:00:00")
+            @ApiParam(value = "Inclusive end date, if not specified current time will be considered (format: yyyy-MM-dd HH:mm:ss)", example = "2014-07-10 00:00:00")
             @RequestParam(value = "end", required = false) @DateTimeFormat(pattern = ACCEPTED_DATETIME_FORMAT) Optional<Date> endDate) {
         return orderService.getOrdersInPeriod(startDate, endDate.orElse(new Date()));
     }

@@ -1,6 +1,6 @@
 package com.acme.shop.repository;
 
-import com.acme.shop.config.TestConfigurationContext;
+import com.acme.shop.config.TestConfiguration;
 import com.acme.shop.model.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,25 +16,23 @@ import static org.junit.Assert.*;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = TestConfigurationContext.class)
+@ContextConfiguration(classes = TestConfiguration.class)
 @DirtiesContext(classMode = BEFORE_EACH_TEST_METHOD)
 public class ProductRepositoryTest {
 
     @Autowired
     private ProductRepository productRepository;
 
-    private Product A_PRODUCT;
+    private Product aProduct;
 
     @Before
     public void setUp() {
-        A_PRODUCT = new Product("a product", new BigDecimal("1234.5678"));
+        aProduct = new Product("a product", new BigDecimal("1234.5678"));
     }
 
     @Test
     public void whenStoringProduct_thenReturnedProductIdIsNotNull() {
-        Number productId = productRepository.storeProduct(A_PRODUCT);
-
-        assertNotNull(productId);
+        assertNotNull(productRepository.storeProduct(aProduct));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -44,8 +42,8 @@ public class ProductRepositoryTest {
 
     @Test
     public void givenProduct_whenStoringItMultipleTimes_thenReturnedIdsAreDifferent() {
-        Number firstId = productRepository.storeProduct(A_PRODUCT);
-        Number secondId = productRepository.storeProduct(A_PRODUCT);
+        Number firstId = productRepository.storeProduct(aProduct);
+        Number secondId = productRepository.storeProduct(aProduct);
 
         assertNotEquals(firstId, secondId);
     }
@@ -57,14 +55,14 @@ public class ProductRepositoryTest {
 
     @Test
     public void whenSingleProductIsStored_productListContainsOnlyIt() {
-        productRepository.storeProduct(A_PRODUCT);
+        productRepository.storeProduct(aProduct);
         assertFalse("Product list should not be empty", productRepository.getProductList().isEmpty());
         assertEquals(1, productRepository.getProductList().size());
     }
 
     @Test
     public void givenProduct_whenUpdating_thenCorrectlyUpdated() {
-        Number productId = productRepository.storeProduct(A_PRODUCT);
+        Number productId = productRepository.storeProduct(aProduct);
         assertNotNull(productId);
 
         int updatedRows = productRepository.updateProduct(new Product(productId.longValue(), "another name", BigDecimal.ZERO));

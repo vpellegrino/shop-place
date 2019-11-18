@@ -57,11 +57,20 @@ public class OrderDetailDTO {
         this.productQuantity = productQuantity;
     }
 
-    public BigDecimal getProductPrice() {
+    BigDecimal getProductPrice() {
         return productPrice;
     }
 
     public void setProductPrice(BigDecimal productPrice) {
         this.productPrice = productPrice;
     }
+
+    public static class Validity {
+        public static void checkDetailValidity(OrderDetailDTO detail) {
+            if (detail == null || detail.getProductId() == null || detail.getProductQuantity() == null) {
+                throw new IllegalArgumentException("Order detail is missing something. Check the input!");
+            }
+        }
+    }
+
 }

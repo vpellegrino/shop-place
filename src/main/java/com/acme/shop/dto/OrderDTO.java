@@ -47,7 +47,7 @@ public class OrderDTO {
         this.involvedProductList = involvedProductList;
     }
 
-    OrderDTO(String buyerEmail, List<OrderDetailDTO> involvedProductList) {
+    public OrderDTO(String buyerEmail, List<OrderDetailDTO> involvedProductList) {
         this.buyerEmail = buyerEmail;
         this.orderDate = new Date();
         this.involvedProductList = involvedProductList;
@@ -83,6 +83,14 @@ public class OrderDTO {
 
     public void setInvolvedProductList(List<OrderDetailDTO> involvedProductList) {
         this.involvedProductList = involvedProductList;
+    }
+
+    public static class Validity {
+        public static void checkValidity(OrderDTO order) {
+            if (order == null || order.getBuyerEmail() == null || order.getInvolvedProductList() == null) {
+                throw new IllegalArgumentException("Order is missing something. Check the input!");
+            }
+        }
     }
 
 }

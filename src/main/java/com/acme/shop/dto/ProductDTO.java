@@ -30,11 +30,6 @@ public class ProductDTO {
         this.unitPrice = unitPrice;
     }
 
-    ProductDTO(String productName, BigDecimal unitPrice) {
-        this.productName = productName;
-        this.unitPrice = unitPrice;
-    }
-
     public Long getProductId() {
         return productId;
     }
@@ -57,6 +52,14 @@ public class ProductDTO {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public static class Validity {
+        public static void checkValidity(ProductDTO product) {
+            if (product == null || product.getProductName() == null || product.getUnitPrice() == null) {
+                throw new IllegalArgumentException("Product is missing something. Check the input!");
+            }
+        }
     }
 
 }

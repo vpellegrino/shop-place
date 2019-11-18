@@ -11,7 +11,7 @@ import java.util.List;
 @ApiModel(description = "An order representation")
 public class OrderDTO {
 
-    @ApiModelProperty(notes = "Order's identifier", example = "789")
+    @ApiModelProperty(notes = "Order's identifier", example = "789", readOnly = true)
     @JsonProperty(value = "order_id")
     private Long orderId;
 
@@ -19,14 +19,14 @@ public class OrderDTO {
     @JsonProperty(value = "buyer_email")
     private String buyerEmail;
 
-    @ApiModelProperty(notes = "Order's date", example = "2013-07-10 04:28:30")
+    @ApiModelProperty(notes = "Order's date", example = "2013-07-10 04:28:30", readOnly = true)
     @JsonProperty(value = "order_date")
     private Date orderDate;
 
     @JsonProperty(value = "involved_products")
     private List<OrderDetailDTO> involvedProductList;
 
-    @ApiModelProperty(notes = "Total value of the order", example = "8")
+    @ApiModelProperty(notes = "Total value of the order", example = "8", readOnly = true)
     @JsonProperty(value = "total_value")
     public BigDecimal getTotalValue() {
         return involvedProductList.stream()

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @ApiModel(description = "A product representation")
 public class ProductDTO {
 
-    @ApiModelProperty(notes = "The product identifier", example = "12345")
+    @ApiModelProperty(notes = "The product identifier", example = "12345", readOnly = true)
     @JsonProperty(value = "product_id")
     private Long productId;
 

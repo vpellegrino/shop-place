@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class OrderDetailDTO {
 
-    @ApiModelProperty(notes = "Product name", example = "Crackers")
+    @ApiModelProperty(notes = "Product name", example = "Crackers", readOnly = true)
     @JsonProperty(value = "product")
     private String productName;
 
@@ -19,7 +19,7 @@ public class OrderDetailDTO {
     @JsonProperty(value = "product_quantity")
     private Long productQuantity;
 
-    @ApiModelProperty(notes = "Price of the product, in USD and per unit, when it has been added to the order", example = "4")
+    @ApiModelProperty(notes = "Price of the product, in USD and per unit, when it has been added to the order", example = "4", readOnly = true)
     @JsonProperty(value = "product_price")
     private BigDecimal productPrice;
 

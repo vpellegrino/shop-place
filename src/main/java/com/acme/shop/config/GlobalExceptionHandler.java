@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -40,7 +41,7 @@ public class GlobalExceptionHandler {
         return error(HttpStatus.INTERNAL_SERVER_ERROR, msg, true);
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class, HttpMessageNotReadableException.class, IllegalArgumentException.class, IllegalStateException.class})
     public ResponseEntity<ApiError> methodArgumentNotValidException(HttpServletRequest req, Exception e) {
 
         String exceptionMessage = "";
@@ -80,7 +81,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ApiError> resourceNotFoundException(HttpServletRequest req, ResourceNotFoundException e) {
 
-        String message = "The specified resource was not found. " + getMessageFromRequest(req);
+        String message = "The specified resource was not found. " + e.getMessage() + getMessageFromRequest(req);
         logger.info(message);
 
         return error(HttpStatus.NOT_FOUND, message, false);

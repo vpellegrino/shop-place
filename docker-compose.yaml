@@ -9,10 +9,10 @@ services:
   mypostgres:
     image: postgres
     volumes:
-      - ./db/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./src/main/resources/db.sql:/docker-entrypoint-initdb.d/db.sql
       - db-data:/var/lib/postgresql/data/
     ports:
-      - "5444:5432"
+      - "5445:5432"
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres

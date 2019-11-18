@@ -2,7 +2,9 @@ package com.acme.shop.repository;
 
 import com.acme.shop.model.Product;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 public interface ProductRepository {
 
@@ -12,4 +14,5 @@ public interface ProductRepository {
 
     int updateProduct(Product product);
 
+    Map<Long, BigDecimal> getPriceForProducts(List<Long> productIdList);
 }

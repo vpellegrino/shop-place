@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD;
@@ -78,6 +80,23 @@ public class ProductRepositoryTest {
     @Test
     public void whenUpdatingNonExistingProduct_thenNoRowsUpdated() {
         assertEquals(0, productRepository.updateProduct(new Product(-999L, "a product name", BigDecimal.ZERO)));
+    }
+
+    @Test
+    public void givenProduct_whenGettingItsPrice_thenCorrectlyRetrieved() {
+        Number productId = productRepository.storeProduct(aProduct);
+        assertNotNull(productId);
+
+        Map<Long, BigDecimal> priceForProducts = productRepository.getPriceForProducts(Collections.singletonList(productId.longValue()));
+
+        assertTrue("Price for product should be correctly retrieved", priceForProducts.containsKey(productId.longValue()));
+        assertEquals(aProduct.getUnitPrice(), priceForProducts.get(productId.longValue()));
+    }
+
+    @Test
+    public void whenGettingPricingForEmptyProductList_thenEmptyMapIsReturned() {
+        assertTrue("Retrieved pricing map should be empty, when no product is passed",
+                productRepository.getPriceForProducts(Collections.emptyList()).isEmpty());
     }
 
     private Product retrieveUpdatedProductFromTheList(Number productId) {

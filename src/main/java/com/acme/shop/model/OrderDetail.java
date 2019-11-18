@@ -5,27 +5,38 @@ import java.util.Objects;
 
 public class OrderDetail {
 
-    private Product product;
+    private Long productId;
 
     private Long productQuantity;
 
     private BigDecimal productPrice;
 
+    private String productName;
+
     public OrderDetail() {
     }
 
-    public OrderDetail(Product product, Long productQuantity, BigDecimal productPrice) {
-        this.product = product;
+    public OrderDetail(Long productId, String productName, Long productQuantity, BigDecimal productPrice) {
+        this.productId = productId;
+        this.productName = productName;
         this.productQuantity = productQuantity;
         this.productPrice = productPrice;
     }
 
-    public Product getProduct() {
-        return product;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Long getProductQuantity() {
@@ -49,22 +60,24 @@ public class OrderDetail {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderDetail that = (OrderDetail) o;
-        return product.equals(that.product) &&
+        return productId.equals(that.productId) &&
                 productQuantity.equals(that.productQuantity) &&
-                productPrice.equals(that.productPrice);
+                productPrice.equals(that.productPrice) &&
+                Objects.equals(productName, that.productName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product, productQuantity, productPrice);
+        return Objects.hash(productId, productQuantity, productPrice, productName);
     }
 
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "product=" + product +
+                "productId=" + productId +
                 ", productQuantity=" + productQuantity +
                 ", productPrice=" + productPrice +
+                ", productName='" + productName + '\'' +
                 '}';
     }
 

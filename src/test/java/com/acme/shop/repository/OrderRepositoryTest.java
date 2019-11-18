@@ -52,8 +52,8 @@ public class OrderRepositoryTest {
         Number anotherProductId = productRepository.storeProduct(anotherProduct);
         anotherProduct.setProductId(anotherProductId.longValue());
 
-        OrderDetail anOrderDetail = new OrderDetail(aProduct, 1L, aProduct.getUnitPrice());
-        OrderDetail anotherOrderDetail = new OrderDetail(anotherProduct, 2L, anotherProduct.getUnitPrice());
+        OrderDetail anOrderDetail = new OrderDetail(aProduct.getProductId(), aProduct.getProductName(), 1L, aProduct.getUnitPrice());
+        OrderDetail anotherOrderDetail = new OrderDetail(anotherProduct.getProductId(), anotherProduct.getProductName(), 2L, anotherProduct.getUnitPrice());
         anOrder = new Order("buyer@acme.com", Arrays.asList(anOrderDetail, anotherOrderDetail));
     }
 
@@ -65,7 +65,7 @@ public class OrderRepositoryTest {
     @Test(expected = ResourceNotFoundException.class)
     public void givenAnOrderContainingNotStoredProducts_whenStoringIt_thenException() {
         anOrder.getInvolvedProductList()
-                .forEach(orderDetail -> orderDetail.getProduct().setProductId(null));
+                .forEach(orderDetail -> orderDetail.setProductId(null));
         orderRepository.storeOrder(anOrder);
     }
 

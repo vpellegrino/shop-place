@@ -1,10 +1,12 @@
 package com.acme.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.math.BigDecimal;
 
+@ApiModel(description = "An order detail representation")
 public class OrderDetailDTO {
 
     @ApiModelProperty(notes = "Product name", example = "Crackers", readOnly = true)

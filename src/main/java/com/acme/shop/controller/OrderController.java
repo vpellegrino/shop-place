@@ -2,6 +2,7 @@ package com.acme.shop.controller;
 
 import com.acme.shop.dto.ApiError;
 import com.acme.shop.dto.OrderDTO;
+import com.acme.shop.dto.ResourceLocation;
 import com.acme.shop.service.OrderService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -33,8 +35,8 @@ public class OrderController {
             @ApiResponse(code = 400, message = "Invalid input", response = ApiError.class),
             @ApiResponse(code = 500, message = "An unexpected error occurred", response = ApiError.class)})
     @ResponseStatus(HttpStatus.CREATED)
-    public Long placeOrder(@RequestBody OrderDTO order) {
-        return orderService.createOrder(order);
+    public ResourceLocation placeOrder(@RequestBody OrderDTO order, HttpServletRequest request) {
+        return new ResourceLocation(request, orderService.createOrder(order));
     }
 
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")

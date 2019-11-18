@@ -9,6 +9,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -85,6 +86,15 @@ public class GlobalExceptionHandler {
         logger.info(message);
 
         return error(HttpStatus.NOT_FOUND, message, false);
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<ApiError> methodNotSupported(HttpServletRequest req, HttpRequestMethodNotSupportedException e) {
+
+        String message = "The specific HTTP method has not been implemented. " + getMessageFromRequest(req);
+        logger.info(message);
+
+        return error(HttpStatus.NOT_IMPLEMENTED, message, false);
     }
 
     @ExceptionHandler(Exception.class)

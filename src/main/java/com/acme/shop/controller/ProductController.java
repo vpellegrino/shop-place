@@ -2,12 +2,14 @@ package com.acme.shop.controller;
 
 import com.acme.shop.dto.ApiError;
 import com.acme.shop.dto.ProductDTO;
+import com.acme.shop.dto.ResourceLocation;
 import com.acme.shop.service.ProductService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -29,8 +31,8 @@ public class ProductController {
             @ApiResponse(code = 500, message = "An unexpected error occurred", response = ApiError.class)})
     @ResponseStatus(HttpStatus.CREATED)
     @ApiModelProperty(value = "product_id", hidden = true)
-    public Long createProduct(@RequestBody ProductDTO product) {
-        return productService.createProduct(product);
+    public ResourceLocation createProduct(@RequestBody ProductDTO product, HttpServletRequest request) {
+        return new ResourceLocation(request, productService.createProduct(product));
     }
 
     @GetMapping(path = "products", produces = APPLICATION_JSON_VALUE)

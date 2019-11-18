@@ -21,7 +21,6 @@ public class OrderDTOTest {
         assertEquals(BigDecimal.ZERO, order.getTotalValue());
     }
 
-
     @Test
     public void givenProductListWithOneProduct_whenConstructingOrder_thenTotalValueIsProductPrice() {
         List<OrderDetailDTO> orderDetailList = Collections.singletonList(

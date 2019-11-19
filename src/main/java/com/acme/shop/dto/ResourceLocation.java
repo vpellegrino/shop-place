@@ -13,11 +13,16 @@ public class ResourceLocation {
     @JsonProperty(value = "uri")
     private String uri;
 
+    @ApiModelProperty(notes = "The identifier related to the created resource", example = "1", readOnly = true)
+    @JsonProperty(value = "id")
+    private Long identifier;
+
     public ResourceLocation() {
     }
 
     public ResourceLocation(HttpServletRequest request, Long identifier) {
         this.uri = String.format("%s/%s", removeLastSlash(request.getRequestURL().toString()), identifier);
+        this.identifier = identifier;
     }
 
     private String removeLastSlash(String url) {
@@ -34,5 +39,13 @@ public class ResourceLocation {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public Long getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(Long identifier) {
+        this.identifier = identifier;
     }
 }

@@ -17,7 +17,15 @@ public class ResourceLocation {
     }
 
     public ResourceLocation(HttpServletRequest request, Long identifier) {
-        this.uri = String.format("%s/%s", request.getRequestURL(), identifier);
+        this.uri = String.format("%s/%s", removeLastSlash(request.getRequestURL().toString()), identifier);
+    }
+
+    private String removeLastSlash(String url) {
+        if (url.endsWith("/")) {
+            return url.substring(0, url.lastIndexOf("/"));
+        } else {
+            return url;
+        }
     }
 
     public String getUri() {

@@ -2,18 +2,18 @@
 REST/JSON web service in Java to manage products and orders, realized with [Spring Boot](https://spring.io/guides/gs/rest-service/).
 
 ## Hot to build
-In order to build the project, [Maven](https://maven.apache.org/docs/3.3.9/release-notes.html) (tested with 3.3.9 version) is required.
+In order to build the project, [Maven](https://maven.apache.org/docs/3.3.9/release-notes.html) is required.
 
 From root folder:
 ```
-mvn clean install
+mvn clean package
 ```
 Build will be launched, and before executing the packaging, all tests will be executed.
 
 In the `target` folder, a fat JAR is available for the execution.
 
 ## How to run
-The application is dockerized and, after the build, it can be easily tagged:
+The application is dockerized and can be easily tagged:
 ```
 docker build --tag=shop-place-app .
 ```
@@ -31,12 +31,12 @@ On the first launch, the database looks for an init script, that is passed by th
 ## Documentation
 If you launch such application locally, it is expected that it will be accessible under `http://localhost:8080/shop-place/` context path.
 
-Indeed, the graphic version of the documentation is at http://localhost:8080/shop-place/swagger-ui.html
+Indeed, the graphic version of the documentation is available at http://localhost:8080/shop-place/swagger-ui.html
 
 ## Authentication
 Authentication mechanism is missing. There are several alternatives that can be used. In a Spring application, a framework like [Spring Security](https://spring.io/projects/spring-security) can be a good choice.
 It is highly customizable and enables you to add complex authentication and authorization mechanisms, that can be leveraged by a simple annotation.
-Going more in details, the JSON Web Token standard [could be used with Spring Security](https://www.baeldung.com/spring-security-oauth-jwt).
+Going more in details, the JSON Web Token standard could be used together [with Spring Security](https://www.baeldung.com/spring-security-oauth-jwt).
 
 ## Redundancy
 Redundancy can be easily obtained, by deploying the application container in a Kubernetes cluster. It is important that a load-balancing strategy is in place, in order to distribute the load among all nodes.
@@ -60,5 +60,5 @@ Generally, I tried to keep the project simple and the dependency layer as small 
 
 - Libraries like [Autovalue](https://github.com/google/auto/blob/master/value/userguide/index.md) and [Lombok](https://projectlombok.org/) can be used to improve code maintainability, for example avoiding to hard-code getters/setters.
 - For simplicity, the fat JAR of the application has been included in the docker image. Docker layering can be leveraged by libraries like [Jib](https://github.com/GoogleContainerTools/jib).
-- In Postgres, the default schema has been used, even if it is not a best practice. Moreover, no indexes are present and no dedicated tablespace are allocated.
+- In Postgres, the default schema has been used, even if it is not a best practice. Moreover, no indexes are present and no dedicated tablespace is allocated.
 - Repository layer has been implemented with JDBC template. There are a lot of alternatives that avoid to manually write entities SQL queries (e.g. Hibernate). For this reason, repository classes have an interface that can be implemented with a specific ORM (if preferred). `@Qualifier` annotation can be used to load the right implementation at runtime.

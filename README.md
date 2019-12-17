@@ -1,7 +1,7 @@
 # Shop Place App
 REST/JSON web service in Java to manage products and orders, realized with [Spring Boot](https://spring.io/guides/gs/rest-service/).
 
-## Hot to build
+## How to build
 In order to build the project, [Maven](https://maven.apache.org/docs/3.3.9/release-notes.html) is required.
 
 From root folder:

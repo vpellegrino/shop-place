@@ -18,7 +18,7 @@
         <swagger.version>2.9.2</swagger.version>
         <swagger.annotations.version>1.5.16</swagger.annotations.version>
         <postgres.version>42.2.8</postgres.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <mockito.version>2.28.2</mockito.version>
         <h2.db.version>1.4.196</h2.db.version>
     </properties>

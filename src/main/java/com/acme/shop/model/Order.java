@@ -1,9 +1,14 @@
 package com.acme.shop.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Order {
 
     private Long orderId;
@@ -28,38 +33,6 @@ public class Order {
     public Order(String buyerEmail, List<OrderDetail> involvedProductList) {
         this.buyerEmail = buyerEmail;
         this.orderDate = new Date();
-        this.involvedProductList = involvedProductList;
-    }
-
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getBuyerEmail() {
-        return buyerEmail;
-    }
-
-    public void setBuyerEmail(String buyerEmail) {
-        this.buyerEmail = buyerEmail;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public List<OrderDetail> getInvolvedProductList() {
-        return involvedProductList;
-    }
-
-    public void setInvolvedProductList(List<OrderDetail> involvedProductList) {
         this.involvedProductList = involvedProductList;
     }
 

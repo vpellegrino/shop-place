@@ -1,8 +1,13 @@
 package com.acme.shop.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Product {
 
     private Long productId;
@@ -22,30 +27,6 @@ public class Product {
 
     public Product(String productName, BigDecimal unitPrice) {
         this.productName = productName;
-        this.unitPrice = unitPrice;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
